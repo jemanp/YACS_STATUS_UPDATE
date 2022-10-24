@@ -45,4 +45,30 @@ int main(int argc, char* argv[])
 
 	char delim = ',';
 	
+	//while(getline(input_csv_file, temp_buffer))
+	while (getline(input_csv_file, temp_buffer))
+	{
+		//tmp = tmp.replace("\uFEFF", "");
+		if (0>temp_buffer[0] ||255< temp_buffer[0])
+		{
+			temp_buffer = temp_buffer.substr(3,3+temp_buffer.size());
+		}
+		//subject skip ex) Administrative Courses, Aerospace Studies...
+		if (check_skip_line(temp_buffer))
+		{
+			line_buffer.clear();
+			continue;
+		}
+		//split the catalog section
+		tokenize(temp_buffer, delim, line_buffer);
+		if (line_buffer.size() == 0)
+		{
+			continue;
+		}
+		else
+		{
+			print(output_csv_file,line_buffer);
+			line_buffer.clear();
+		}
+	}
 }
