@@ -20,6 +20,19 @@ void get_colnume(std::ofstream& output_csv_file)
 		            <<"Rem," << std::endl;
 }
 
+bool check_skip_line(std::string& buffer)
+{
+	for (int i = 0; i < buffer.size(); i++)
+	{
+		if (buffer[i] == ',' && buffer[i+1] == ',')
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+
 int main(int argc, char* argv[])
 {
 	std::ifstream input_csv_file;
