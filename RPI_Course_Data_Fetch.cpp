@@ -39,5 +39,10 @@ int main(int argc, char* argv[])
 	}
 	get_colnume(output_csv_file);
 
+	int idx = 0;
+	int double_deli = 0;
+	std::vector<std::string> line_buffer;
 
+	char delim = ',';
+	
 }
